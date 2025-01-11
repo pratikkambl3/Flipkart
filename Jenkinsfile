@@ -27,10 +27,15 @@ pipeline{
             }
         }
         stage('push image'){
+            environment {
+                DOCKER_IMAGE = "pratikkambl3/spring-app:${BUILD_NUMBER}"
+                // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
+                REGISTRY_CREDENTIALS = credentials('docker-login')
+            }   
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'pwdd', usernameVariable: 'user')]) {
                     sh 'echo $pwdd | docker login -u $user --password-stdin '
-                    sh 'docker push pratikkambl3/spring-app'
+                    sh 'docker push ${DOCKER_IMAGE}'
                 }
             }
         }
