@@ -4,7 +4,7 @@ metadata:
   name: spring-deploy
 spec:
   replicas: 2
-    strategy:
+  strategy:
       type: RollingUpdate
   selector:
     matchLabels:
