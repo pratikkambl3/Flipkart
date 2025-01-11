@@ -34,11 +34,7 @@ pipeline{
             }   
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'pwdd', usernameVariable: 'user')]) {
-                    echo "Docker username: $user"
-                    echo "Docker password: $pwdd"
-                    sh '''
-                     echo "$pwdd" | docker login -u $user --password-stdin
-                      '''
+                    sh 'echo "$pwdd" | docker login -u $user --password-stdin'
                     sh 'docker push ${DOCKER_IMAGE}'
                 }
             }
