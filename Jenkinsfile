@@ -37,7 +37,7 @@ pipeline{
                 //    sh 'echo "$pwdd" | docker login -u $user --password-stdin'
                  //   sh 'docker push ${DOCKER_IMAGE}'
                 echo "Pushed"
-             }
+             //}
             }
         }
     }
