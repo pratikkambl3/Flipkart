@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-deploy
+spec:
+  replicas: 2
+    strategy:
+      type: RollingUpdate
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      name: spring-pod
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: spring-container
+          image: pratikkambl3/spring-app
+          ports:
+            - containerPort: 8080
+
