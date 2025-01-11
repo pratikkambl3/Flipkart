@@ -37,7 +37,7 @@ pipeline{
                     echo "Docker username: $user"
                     echo "Docker password: $pwdd"
                     sh '''
-                     docker login -u "$user" -p "$pwdd"
+                     echo "$pwdd" | docker login -u $user --password-stdin
                       '''
                     sh 'docker push ${DOCKER_IMAGE}'
                 }
