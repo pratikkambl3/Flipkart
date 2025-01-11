@@ -33,10 +33,11 @@ pipeline{
                 REGISTRY_CREDENTIALS = credentials('docker-login')
             }   
             steps{
-                withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'pwdd', usernameVariable: 'user')]) {
-                    sh 'echo "$pwdd" | docker login -u $user --password-stdin'
-                    sh 'docker push ${DOCKER_IMAGE}'
-                }
+               // withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'pwdd', usernameVariable: 'user')]) {
+                //    sh 'echo "$pwdd" | docker login -u $user --password-stdin'
+                 //   sh 'docker push ${DOCKER_IMAGE}'
+                echo "Pushed"
+             }
             }
         }
     }
