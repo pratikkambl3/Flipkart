@@ -29,7 +29,7 @@ pipeline{
         stage('push image'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'pwdd', usernameVariable: 'user')]) {
-                    sh 'docker login -u ${user} -p ${pwdd} '
+                    sh 'echo $pwdd | docker login -u $user --password-stdin '
                     sh 'docker push pratikkambl3/spring-app'
                 }
             }
